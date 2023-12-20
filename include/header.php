@@ -7,6 +7,26 @@ if ($customer->checkLogin()) {
 } else if ($admin->checkLogin()) {
     $user = $admin->getAdmin(getSession("admin_sdt"));
 }
+
+$dsSPTrongGH = array();
+if (isset($user)) {
+    $dsSPTrongGH = $gioHang->getAllByCusID($user['ma']);
+}
+
+$id = getIndex("id");
+
+if (isset($_POST["btnAddToCart"]) && $id != '') {
+    $quantity = postIndex("quantityField");
+    $userId = $user['ma'];
+    $countProductInCart = $gioHang->isProductInCart($userId, $id);
+    if ($countProductInCart) {
+        $gioHang->updateQuantity($quantity, $userId, $id);
+    } else {
+        $gioHang->insertProductIntoCart($userId, $id, $quantity);
+    }
+    unset($_POST["btnAddToCart"]);
+    $dsSPTrongGH = $gioHang->getAllByCusID($user['ma']);
+}
 ?>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-light sticky-top px-lg-5">

@@ -1,10 +1,3 @@
-<?php
-$dsSPTrongGH = array();
-if (isset($user)) {
-    $dsSPTrongGH = $gioHang->getAllByCusID($user['ma']);
-}
-?>
-
 <input hidden type="checkbox" id='btnCart'>
 <label for="btnCart" class="btn btn-outline-success">
 

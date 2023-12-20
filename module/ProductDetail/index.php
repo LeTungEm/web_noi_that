@@ -9,13 +9,6 @@ if ($id != '') {
     if (!file_exists($path) && !is_file($path)) {
         $path = 'media/image/default.png';
     }
-
-    if (isset($_POST["btnAddToCart"])) {
-        $quantity = postIndex("quantityField");
-        $userId = $user['ma'];
-        $gioHang->insertProductIntoCart($userId, $id, $quantity);
-        unset($_POST["btnAddToCart"]);
-    }
     ?>
     <div class="container my-5">
         <div class="row">
