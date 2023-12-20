@@ -18,5 +18,9 @@ class GioHang extends Db
     {
         return $this->update("UPDATE `giohang` SET `soLuong`= `soLuong` + ? WHERE maKhachHang = ? and maSanPham = ?", array($quantity, $cusId, $proId));
     }
+    public function deleteProduct($cusId, $proId)
+    {
+        return $this->delete("DELETE FROM `giohang` WHERE `maKhachHang` = ? and `maSanPham` = ?", array($cusId, $proId));
+    }
 }
 ?>

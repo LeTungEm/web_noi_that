@@ -27,6 +27,14 @@ if (isset($_POST["btnAddToCart"]) && $id != '') {
     unset($_POST["btnAddToCart"]);
     $dsSPTrongGH = $gioHang->getAllByCusID($user['ma']);
 }
+
+if (isset($_POST["btnDeleteCart"])) {
+    $userId = $user['ma'];
+    $removeProCartID  = postIndex("productIdRemoved");
+    $gioHang->deleteProduct($userId, $removeProCartID);
+    unset($_POST["btnDeleteCart"]);
+    $dsSPTrongGH = $gioHang->getAllByCusID($user['ma']);
+}
 ?>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-light sticky-top px-lg-5">

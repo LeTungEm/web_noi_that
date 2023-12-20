@@ -29,7 +29,7 @@
             } ?>
             <div class="d-flex mb-3 shadow">
                 <img style="width: 30%;" src="<?php echo $path; ?>" class="card-img-top" alt="">
-                <div class="ms-3">
+                <div class="ms-3 p-1">
                     <h1 class="text-capitalize fs-5">
                         <?php echo $sp["tenSanPham"]; ?>
                     </h1>
@@ -41,9 +41,23 @@
                             <?php echo $sp["giaMoi"] > 0 ? $sanPham->formatPrice($sp["giaMoi"]) . 'đ' : $sanPham->formatPrice($sp["gia"]) . 'đ'; ?>
                         </span>
                     </h5>
+                    <form class="deleteCartForm" method="post">
+                        <input name="productIdRemoved" type="number" hidden value="<?php echo $sp["maSanPham"]; ?>">
+                        <input name="btnDeleteCart" value="Xóa sản phẩm" type="submit"
+                            class="border-0 bg-transparent fst-italic text-decoration-underline cursor-pointer" />
+                    </form>
                 </div>
             </div>
 
         <?php } ?>
+        <script>
+            var forms = document.getElementsByClassName("deleteCartForm");
+
+            for (var i = 0; i < forms.length; i++) {
+                forms[i].addEventListener("submit", function (event) {
+                    location.reload();
+                });
+            }
+        </script>
     </div>
 </div>
