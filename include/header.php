@@ -1,11 +1,13 @@
 <?php
 $user = null;
+$isAdmin = false;
 if ($customer->checkLogin()) {
     $user = $customer->getCustomer(getSession("customer_sdt"));
 } else if ($employee->checkLogin()) {
     $user = $employee->getEmployee(getSession("employee_sdt"));
 } else if ($admin->checkLogin()) {
     $user = $admin->getAdmin(getSession("admin_sdt"));
+    $isAdmin = true;
 }
 
 $dsSPTrongGH = array();
@@ -30,7 +32,7 @@ if (isset($_POST["btnAddToCart"]) && $id != '') {
 
 if (isset($_POST["btnDeleteCart"])) {
     $userId = $user['ma'];
-    $removeProCartID  = postIndex("productIdRemoved");
+    $removeProCartID = postIndex("productIdRemoved");
     $gioHang->deleteProduct($userId, $removeProCartID);
     unset($_POST["btnDeleteCart"]);
     $dsSPTrongGH = $gioHang->getAllByCusID($user['ma']);
@@ -114,7 +116,7 @@ if (isset($_POST["btnDeleteCart"])) {
 <!-- end navbar -->
 
 <!-- banner -->
-<?php if (getIndex("action") == "home") { ?>
+<?php if (getIndex("action") == "home" && $isAdmin == false) { ?>
     <div>
         <img src="media/image/slide/8.jpg" class="banner d-block w-100" alt="...">
     </div>
