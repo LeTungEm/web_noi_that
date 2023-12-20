@@ -1,0 +1,176 @@
+a{
+    text-decoration: none !important; 
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+/* =================================Header============================= */
+/* ========================================================================== */
+
+#header{
+    background-image: url("");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.banner{
+    height: 60vh;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: center;
+}
+
+.cart-container{
+    position: fixed;
+    display: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    height: 100vh;
+    background-color: white;
+    z-index: 1030;
+}
+
+#btnCart:checked ~ .cart-container{
+    display: block !important;
+}
+
+/* =================================Home============================= */
+/* ========================================================================== */
+.scrollView {
+    overflow: scroll;
+    height: 90vh;
+    /* overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none; */
+}
+
+.scrollView::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+}
+
+
+
+.scrollVer {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+}
+
+.scrollVer::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+}
+
+.number-text{
+    width: 100px;
+    text-align: center;
+}
+
+
+    .list-group-item{
+        border: none;
+    }
+        .card {
+            width: 250px;
+            height: 200px !important;
+            position: relative;
+            text-align: center;
+            border: none;
+            overflow: hidden;
+        }
+
+        .card:hover{
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+/* =================================CourseDetail============================= */
+/* ========================================================================== */
+.videoButton {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    background: #41414152;
+}
+             
+
+/* =================================CusEditInfo============================= */
+/* ========================================================================== */
+#cbControl:checked + input{
+    display: block !important;
+}
+
+.delSDT:checked + input[type=text]{
+    text-decoration: line-through;
+}
+
+@media (max-width:1000px){
+    .card{
+        width: 230px;
+        height: 180px !important;
+    }
+    .user_menu .dropdown-menu{
+        left: 0 !important;
+        right: unset !important;
+    }
+}
+
+@media (max-width:500px){
+    .cart-container{
+        width: 100%;
+    }
+    .card{
+        width: 170px;
+        height: 120px !important;
+    }
+
+    .card-img-overlay h5{
+        font-size: 15px;
+    }
+
+    .card-img-overlay p{
+        font-size: 10px;
+        margin-bottom: 5px;
+    }
+
+
+    .show_Button a{
+        font-size: 12px;
+    }
+    /* cousers manager */
+    .courses-info .col{
+        font-size: 10px !important;
+    }
+
+    .courses-info .col i{
+        font-size: 17px !important;
+    }
+    /*  */
+
+    .customer-info .col{
+        font-size: 10px !important;
+    }
+
+    .customer-info .col i{
+        font-size: 17px !important;
+        background-color: dimgray;
+    }
+}
+
+@media (max-width:400px){
+    .card{
+        width: 150px;
+    }
+}
+  
+    
