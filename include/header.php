@@ -10,15 +10,19 @@ if ($customer->checkLogin()) {
     $isAdmin = true;
 }
 
+$id = getIndex("id");
+
 $dsSPTrongGH = array();
 if (isset($user)) {
     $dsSPTrongGH = $gioHang->getAllByCusID($user['ma']);
 }
 
-$id = getIndex("id");
 
 if (isset($_POST["btnAddToCart"]) && $id != '') {
     $quantity = postIndex("quantityField");
+    if(!isset($user)){
+        header("location:index.php?action=login&mod=login");
+    }
     $userId = $user['ma'];
     $countProductInCart = $gioHang->isProductInCart($userId, $id);
     if ($countProductInCart) {
