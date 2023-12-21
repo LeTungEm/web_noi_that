@@ -48,7 +48,7 @@ class Db{
 		public function insert($sql,  $arr = array(), $mode = PDO::FETCH_ASSOC)
 		{
 			$this->query($sql, $arr, $mode);	
-			return $this->getRowCount();
+			return $this->dbh->lastInsertId();
 		}
 		
 		public function update($sql,  $arr = array(), $mode = PDO::FETCH_ASSOC)

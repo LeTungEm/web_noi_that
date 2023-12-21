@@ -1,25 +1,94 @@
-<!-- list lesson -->
+<?php
+$dsHang = $hang->getAll();
+$dsLoaiSP = $loaiSanPham->getAll();
+$filterTypeId = '';
+$filterBrandId = '';
+$search = '';
+$page = 1;
+
+if (getIndex("page") != '') {
+    $page = getIndex("page");
+}
+
+if (isset($_POST["btnSubmit"])) {
+    // Xử lý lọc khóa học
+    $filterTypeId = postIndex("filterType");
+    $filterBrandId = postIndex("filterBrand");
+    $search = postIndex("search");
+
+    $soLuongSP = ceil($sanPham->countProductFilter($filterTypeId, $filterBrandId, $search) / SAN_PHAM_MOT_TRANG);
+
+    $dsSanPham = $sanPham->getAllForShowFilter($filterTypeId, $filterBrandId, $search, ($page - 1) * SAN_PHAM_MOT_TRANG);
+
+
+} else {
+
+    $soLuongSP = ceil($sanPham->countProduct() / SAN_PHAM_MOT_TRANG);
+
+    $dsSanPham = $sanPham->getAllForShow(($page - 1) * SAN_PHAM_MOT_TRANG);
+}
+?>
+<form class="container mt-5" method="post" action="?action=home">
+    <ul class="list-group text-start my-2">
+        <li class="list-group-item">
+            <!-- form lọc thông tin -->
+            <div class="input-group my-2">
+                <label class="input-group-text" for="type">Lọc theo loại</label>
+                <select class="form-select" id="type" name="filterType">
+                    <option value="0">
+                        Tất cả loại
+                    </option>
+                    <?php
+                    foreach ($dsLoaiSP as $loai) {
+                        ?>
+                        <option <?php echo $filterTypeId == $loai["maLoai"] ? "selected" : '' ?>
+                            value="<?php echo $loai["maLoai"] ?>">
+                            <?php echo $loai["tenLoai"] ?>
+                        </option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="input-group my-2">
+                <label class="input-group-text" for="type">Lọc theo hãng</label>
+                <select class="form-select" id="type" name="filterBrand">
+                    <option value="0">
+                        Tất cả hãng
+                    </option>
+                    <?php
+                    foreach ($dsHang as $hang) {
+                        ?>
+                        <option <?php echo $filterBrandId == $hang["maHang"] ? "selected" : '' ?>
+                            value="<?php echo $hang["maHang"] ?>">
+                            <?php echo $hang["tenHang"] ?>
+                        </option>
+                    <?php } ?>
+                </select>
+            </div>
+        </li>
+        <li class="list-group-item d-flex">
+            <input class="form-control me-3" value="<?php echo $search; ?>" name="search" type="search"
+                placeholder="Tìm theo tên">
+            <input class="btn btn-success" value="Lọc dữ liệu" type="submit" name="btnSubmit">
+        </li>
+    </ul>
+</form>
+
 <div class="container mt-5">
+    <!-- start duyệt sản phẩm -->
     <div class="row">
         <?php
-        $dsSanPham;
-        $page = 1;
-        $soLuongSP = ceil($sanPham->countCourses() / KHOA_HOC_MOT_TRANG);
-        if (getIndex("page") != '') {
-            $page = getIndex("page");
-        }
-
-        $dsSanPham = $sanPham->getAllForShow(($page - 1) * KHOA_HOC_MOT_TRANG);
         foreach ($dsSanPham as $sp) {
 
             ?>
             <div class="col col-6 col-lg-3 mb-3 d-flex flex-column justify-content-center">
                 <?php
+                // Lấy hình ảnh
                 $hinh = isset($sp["hinh"]) ? $sp["hinh"] : "";
                 $path = 'media/image/product/' . $hinh;
                 if (!file_exists($path) && !is_file($path)) {
                     $path = 'media/image/default.png';
                 } ?>
+                <!-- start thẻ sản phẩm -->
                 <a class="shadow" href="?action=product_detail&id=<?php echo $sp["maSanPham"]; ?>">
                     <div class="card mb-3 w-100">
                         <img style="width: 100%; height: 100%;" src="<?php echo $path; ?>" class="card-img-top" alt="">
@@ -38,9 +107,13 @@
                         </h5>
                     </div>
                 </a>
+                <!-- end thẻ sản phẩm -->
+
             </div>
         <?php } ?>
     </div>
+    <!-- end duyệt sản phẩm -->
+
 
     <!-- Phân trang -->
     <?php if ($soLuongSP > 1) { ?>
@@ -93,7 +166,8 @@
         </div>
     <?php } ?>
 </div>
-<!-- end list lesson -->
+<!-- end phân trang -->
+
 <div class="container">
     <div class="row">
         <h4 class="col text-center pb-4 pt-4 text-success">LÝ DO BẠN NÊN MUA SẮM TẠI TM_House</h4>
@@ -128,7 +202,3 @@
         </div>
     </div>
 </div>
-
-<!-- page-1*soPT -->
-<!-- <h1><a href="module/Home/home.php" target="moiTrang">nhap vao</a></h1><br>
-<h1><a href="test.php?id=123" target="moiTrang">nhap vao test</a></h1> -->

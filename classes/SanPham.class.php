@@ -4,15 +4,57 @@ class SanPham extends Db
 
     public function getAll()
     {
-        return $this->select("select * from sanpham where maKhoaHoc = ?");
+        return $this->select("select * from sanpham");
     }
     public function getAllForShow($limit)
     {
-        return $this->select("select * from sanpham limit " . $limit . ", " . KHOA_HOC_MOT_TRANG);
+        return $this->select("select * from sanpham limit " . $limit . ", " . SAN_PHAM_MOT_TRANG);
     }
-    public function countCourses()
+    public function countProduct()
     {
         $count = $this->select("select count(maSanPham) as count from sanpham");
+        return $count[0]["count"];
+    }
+    public function getAllForShowFilter($typeId, $brandId, $search, $limit)
+    {
+        $search = "%" . $search . "%";
+        $sql = "select * from sanpham ";
+        $params = array();
+        if ($typeId != 0 && $brandId != 0) {
+            $sql .= "where maHang = ? and maLoai = ? and tenSanPham like ?";
+            $params = array($brandId, $typeId, $search);
+        } else if ($typeId != 0) {
+            $sql .= "where maLoai = ? and tenSanPham like ?";
+            $params = array($typeId, $search);
+        } else if ($brandId != 0) {
+            $sql .= "where maHang = ? and tenSanPham like ?";
+            $params = array($brandId, $search);
+        } else {
+            $sql .= "where tenSanPham like ?";
+            $params = array($search);
+        }
+        $sql .= " limit " . $limit . ", " . SAN_PHAM_MOT_TRANG;
+        return $this->select($sql, $params);
+    }
+    public function countProductFilter($typeId, $brandId, $search)
+    {
+        $search = "%" . $search . "%";
+        $sql = "select count(maSanPham) as count from sanpham ";
+        $params = array();
+        if ($typeId != 0 && $brandId != 0) {
+            $sql .= "where maHang = ? and maLoai = ? and tenSanPham like ?";
+            $params = array($brandId, $typeId, $search);
+        } else if ($typeId != 0) {
+            $sql .= "where maLoai = ? and tenSanPham like ?";
+            $params = array($typeId, $search);
+        } else if ($brandId != 0) {
+            $sql .= "where maHang = ? and tenSanPham like ?";
+            $params = array($brandId, $search);
+        } else {
+            $sql .= "where tenSanPham like ?";
+            $params = array($search);
+        }
+        $count = $this->select($sql, $params);
         return $count[0]["count"];
     }
     public function formatPrice($price)
@@ -41,5 +83,36 @@ class SanPham extends Db
         }
         return $data;
     }
+    public function filterSanPham($typeId, $brandId, $search)
+    {
+        $search = "%" . $search . "%";
+        $sql = "select * from sanpham ";
+        $params = array();
+        if ($typeId != 0 && $brandId != 0) {
+            $sql .= "where maHang = ? and maLoai = ? and tenSanPham like ?";
+            $params = array($brandId, $typeId, $search);
+        } else if ($typeId != 0) {
+            $sql .= "where maLoai = ? and tenSanPham like ?";
+            $params = array($typeId, $search);
+        } else if ($brandId != 0) {
+            $sql .= "where maHang = ? and tenSanPham like ?";
+            $params = array($brandId, $search);
+        }else{
+            $sql .= "where tenSanPham like ?";
+            $params = array($search);
+        }
+        return $this->select($sql, $params);
+
+    }
+    public function deleteSanPhamByID($id)
+    {
+        $count = $this->delete("DELETE FROM `sanpham` WHERE `maSanPham` = ?", array($id));
+        return $count > 0 ? true : false;
+    }
+    public function insertSanPham($tenSanPham, $gia, $giaMoi, $moTa, $maLoai, $maHang, $hinh)
+    {
+        return $this->insert("INSERT INTO `sanpham`(`tenSanPham`, `gia`, `giaMoi`, `moTa`, `maLoai`, `maHang`, `hinh`) VALUES (?,?,?,?,?,?,?);", array($tenSanPham, $gia, $giaMoi, $moTa, $maLoai, $maHang, $hinh));
+    }
+
 }
 ?>

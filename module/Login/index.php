@@ -30,7 +30,7 @@ a {
 <div class="d-flex mt-4 justify-content-center">
     <div class="border border-2 rounded p-3 container">
         <a href="./?action=home">
-            <h1 class="fw-bold text-center text-primary border-bottom">TM_Studying</h1>
+            <h1 class="fw-bold text-center text-primary border-bottom">TM_House</h1>
         </a>
         <h2 class="text-center py-2"><?php echo $header; ?></h2>
         <form method="post" action="?action=login&mod=login">

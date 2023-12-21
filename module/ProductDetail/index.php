@@ -4,6 +4,9 @@ if ($id == '')
     exit;
 if ($id != '') {
     $chiTietSP = $sanPham->getSanPhamByID($id);
+    if (count($chiTietSP) == 0) {
+        echo '<meta http-equiv="refresh" content="0,url=index.php?index.php?action=home">';
+    }
     $hinh = isset($chiTietSP["hinh"]) ? $chiTietSP["hinh"] : "";
     $path = 'media/image/product/' . $hinh;
     if (!file_exists($path) && !is_file($path)) {

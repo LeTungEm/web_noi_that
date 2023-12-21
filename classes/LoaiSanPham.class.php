@@ -1,10 +1,10 @@
 <?php
-class SanPham extends Db
+class LoaiSanPham extends Db
 {
 
     public function getAll()
     {
-        return $this->select("select * from sanpham where maKhoaHoc = ?");
+        return $this->select("select * from loaisanpham");
     }
 }
 ?>

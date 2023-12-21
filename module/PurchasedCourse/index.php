@@ -1,8 +1,8 @@
 <?php
-    $user = null;
-    if($customer->checkLogin()){
-        $user = $customer->getCustomer(getSession("customer_sdt"));
-    }
+$user = null;
+if ($customer->checkLogin()) {
+    $user = $customer->getCustomer(getSession("customer_sdt"));
+}
 ?>
 <h2 class="text-success">Khóa học đã mua</h2>
 <div class="container">
@@ -10,68 +10,79 @@
         <?php
         $KhoaHoc;
         $page = 1;
-        $countCourses = ceil($purchasedCourse->countByCustomerID($user["ma"])/KHOA_HOC_MOT_TRANG);
-        if(getIndex("page") != ''){
+        $countProduct = ceil($purchasedCourse->countByCustomerID($user["ma"]) / SAN_PHAM_MOT_TRANG);
+        if (getIndex("page") != '') {
             $page = getIndex("page");
         }
-                    
-        $KhoaHoc = $purchasedCourse->getCourseByCustomerID($user["ma"], (($page-1)*KHOA_HOC_MOT_TRANG));
-        foreach($KhoaHoc as $khoa){
 
-?>
-        <div class="col cols-sm-6 cols-md-4 cols-lg-3 cols-xl-3 pdm-No mb-3">
-            <?php printCourse($khoa); ?>
-            <h6>Ngày mua: <?php echo date("d-m-Y", strtotime($khoa["ngayMua"])); ?></h6>
-            <h6><i class='fas fa-user-friends'
-                    style='font-size:12px'></i><?php echo "  " . $purchasedCourse->countByCourseId($khoa["maKhoaHoc"])["lanmua"]; ?>
-            </h6>
-        </div>
+        $KhoaHoc = $purchasedCourse->getCourseByCustomerID($user["ma"], (($page - 1) * SAN_PHAM_MOT_TRANG));
+        foreach ($KhoaHoc as $khoa) {
+
+            ?>
+            <div class="col cols-sm-6 cols-md-4 cols-lg-3 cols-xl-3 pdm-No mb-3">
+                <?php printCourse($khoa); ?>
+                <h6>Ngày mua:
+                    <?php echo date("d-m-Y", strtotime($khoa["ngayMua"])); ?>
+                </h6>
+                <h6><i class='fas fa-user-friends' style='font-size:12px'></i>
+                    <?php echo "  " . $purchasedCourse->countByCourseId($khoa["maKhoaHoc"])["lanmua"]; ?>
+                </h6>
+            </div>
         <?php } ?>
     </div>
 
     <!-- Phân trang -->
-    <?php if ($countCourses > 1) { ?>
-    <div class="row">
-        <div class="col d-flex justify-content-center">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <?php if ($page > 1) { ?>
-                    <!-- page < 1 không cho lùi -->
-                    <li class="page-item">
-                        <a class="page-link" href="./index.php?action=cus_purchasedCourse&page=<?php echo $page - 1; ?>"
-                            aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <?php } ?>
-                    <li class="page-item <?php if (1 == $page) {
-                    echo "active";} ?>"><a class="page-link" href="./index.php?action=cus_purchasedCourse&page=1">1</a></li>
-                    <li class="page-item"><a class="page-link">&nbsp;</a></li>
-                    <?php for ($i = $page - 2; $i <= $countCourses-1; $i++) {
+    <?php if ($countProduct > 1) { ?>
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <?php if ($page > 1) { ?>
+                            <!-- page < 1 không cho lùi -->
+                            <li class="page-item">
+                                <a class="page-link" href="./index.php?action=cus_purchasedCourse&page=<?php echo $page - 1; ?>"
+                                    aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <li class="page-item <?php if (1 == $page) {
+                            echo "active";
+                        } ?>"><a class="page-link" href="./index.php?action=cus_purchasedCourse&page=1">1</a>
+                        </li>
+                        <li class="page-item"><a class="page-link">&nbsp;</a></li>
+                        <?php for ($i = $page - 2; $i <= $countProduct - 1; $i++) {
                             if ($i > 1 && $i <= $page + 2) { ?>
-                    <!-- chỉ xuất 5 trang trong khoản của page hiện tại -->
-                    <li class="page-item <?php if ($i == $page) {
-                    echo "active";} ?>"><a class="page-link"
-                            href="./index.php?action=cus_purchasedCourse&page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-                    <?php }} ?>
-                    <li class="page-item"><a class="page-link">&nbsp;</a></li>
-                    <li class="page-item <?php if ($countCourses == $page) {
-                    echo "active";} ?>"><a class="page-link"
-                            href="./index.php?action=cus_purchasedCourse&page=<?php echo $countCourses; ?>"><?php echo $countCourses; ?></a>
-                    </li>
-                    <?php if ($page < $countCourses) { ?>
-                    <!-- page = max không cho tiến tới -->
-                    <li class="page-item">
-                        <a class="page-link" href="./index.php?action=cus_purchasedCourse&page=<?php echo $page+1; ?>"
-                            aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                    <?php } ?>
-                </ul>
-            </nav>
+                                <!-- chỉ xuất 5 trang trong khoản của page hiện tại -->
+                                <li class="page-item <?php if ($i == $page) {
+                                    echo "active";
+                                } ?>"><a class="page-link"
+                                        href="./index.php?action=cus_purchasedCourse&page=<?php echo $i; ?>">
+                                        <?php echo $i; ?>
+                                    </a></li>
+                            <?php }
+                        } ?>
+                        <li class="page-item"><a class="page-link">&nbsp;</a></li>
+                        <li class="page-item <?php if ($countProduct == $page) {
+                            echo "active";
+                        } ?>"><a class="page-link"
+                                href="./index.php?action=cus_purchasedCourse&page=<?php echo $countProduct; ?>">
+                                <?php echo $countProduct; ?>
+                            </a>
+                        </li>
+                        <?php if ($page < $countProduct) { ?>
+                            <!-- page = max không cho tiến tới -->
+                            <li class="page-item">
+                                <a class="page-link" href="./index.php?action=cus_purchasedCourse&page=<?php echo $page + 1; ?>"
+                                    aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </nav>
+            </div>
         </div>
-    </div>
     <?php } ?>
 </div>
 <!-- end list lesson -->

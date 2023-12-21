@@ -98,7 +98,7 @@
         }
         
         public function getAllForShow($limit){
-            return $this->select("select * from KhoaHoc limit ".$limit.", ".KHOA_HOC_MOT_TRANG);
+            return $this->select("select * from KhoaHoc limit ".$limit.", ".SAN_PHAM_MOT_TRANG);
         }
 
         public function getTopThreeBestSeller(){

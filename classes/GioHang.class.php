@@ -9,9 +9,15 @@ class GioHang extends Db
     {
         return $this->insert("INSERT INTO `giohang`(`maKhachHang`, `maSanPham`, `soLuong`) VALUES (?,?,?)", array($cusId, $proId, $quantity));
     }
+    
     public function isProductInCart($cusId, $proId)
     {
         $count = $this->select("select count(*) as count from giohang where maKhachHang = ? and maSanPham = ?", array($cusId, $proId));
+        return $count[0]["count"] > 0 ? true : false;
+    }
+    public function isProductExist($proId)
+    {
+        $count = $this->select("select count(*) as count from giohang where maSanPham = ?", array($proId));
         return $count[0]["count"] > 0 ? true : false;
     }
     public function updateQuantity($quantity, $cusId, $proId)

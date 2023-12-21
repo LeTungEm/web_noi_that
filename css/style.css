@@ -40,11 +40,21 @@ a{
     display: block !important;
 }
 
+.btn-checkout{
+    text-align: center;
+    padding: 1vh;
+    color: white;
+    cursor: pointer;
+}
+
+.total-text{
+    font-weight: bolder;
+}
 /* =================================Home============================= */
 /* ========================================================================== */
 .scrollView {
     overflow: scroll;
-    height: 85vh;
+    height: 75vh;
     /* overflow: -moz-scrollbars-none;
     -ms-overflow-style: none; */
 }

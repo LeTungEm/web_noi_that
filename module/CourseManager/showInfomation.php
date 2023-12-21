@@ -171,7 +171,7 @@
                     <div class="col col-2"><?php echo $course->formatDecsription($data["moTa"]); ?></div>
                     <div class="col col-2"><?php echo $data["ngayDangTai"]; ?></div>
                     <div class="col col-2">
-                        <?php echo $purchasedCourse->countByCourseId($data["maKhoaHoc"])["lanmua"]; ?>
+                        <!-- <?php echo $purchasedCourse->countByCourseId($data["maKhoaHoc"])["lanmua"]; ?> -->
                     </div>
                     <div class="col col-1">
                         <!-- Button trigger modal -->

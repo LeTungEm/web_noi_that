@@ -1,26 +1,29 @@
 <?php
 $user = null;
 $isAdmin = false;
+// start kiểm tra đăng nhập
 if ($customer->checkLogin()) {
     $user = $customer->getCustomer(getSession("customer_sdt"));
-} else if ($employee->checkLogin()) {
-    $user = $employee->getEmployee(getSession("employee_sdt"));
 } else if ($admin->checkLogin()) {
     $user = $admin->getAdmin(getSession("admin_sdt"));
     $isAdmin = true;
 }
 
 $id = getIndex("id");
+$totalQuantityCart = 0;
+$totalPriceCart = 0;
+$isOpenCart = "";
 
+// Get danh sách sản phẩm trong giỏ hàng
 $dsSPTrongGH = array();
 if (isset($user)) {
     $dsSPTrongGH = $gioHang->getAllByCusID($user['ma']);
 }
 
-
+// Thêm sản phẩm vào giỏ hàng
 if (isset($_POST["btnAddToCart"]) && $id != '') {
     $quantity = postIndex("quantityField");
-    if(!isset($user)){
+    if (!isset($user)) {
         header("location:index.php?action=login&mod=login");
     }
     $userId = $user['ma'];
@@ -34,12 +37,19 @@ if (isset($_POST["btnAddToCart"]) && $id != '') {
     $dsSPTrongGH = $gioHang->getAllByCusID($user['ma']);
 }
 
+// Xóa sản phẩm khỏi giỏ hàng
 if (isset($_POST["btnDeleteCart"])) {
     $userId = $user['ma'];
     $removeProCartID = postIndex("productIdRemoved");
     $gioHang->deleteProduct($userId, $removeProCartID);
     unset($_POST["btnDeleteCart"]);
     $dsSPTrongGH = $gioHang->getAllByCusID($user['ma']);
+    $isOpenCart = "checked";
+}
+
+foreach ($dsSPTrongGH as $spInCart) {
+    $totalQuantityCart += $spInCart['soLuong'];
+    $totalPriceCart += $spInCart['soLuong'] * ($spInCart["giaMoi"] > 0 ? $spInCart["giaMoi"] : $spInCart["gia"]);
 }
 ?>
 <!-- Navbar -->
@@ -72,7 +82,7 @@ if (isset($_POST["btnDeleteCart"])) {
         </div>
     </div>
     <?php if ($user != null) { ?>
-        <!-- Menu người dùng -->
+        <!-- start menu người dùng -->
         <div class="user_menu dropdown mx-3">
             <div id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="./media/image/user/<?php if ($user != null) {
@@ -106,20 +116,24 @@ if (isset($_POST["btnDeleteCart"])) {
                 <li><a class="dropdown-item" onclick="getCLick()" href="?action=dangxuat">Đăng xuất</a></li>
             </ul>
         </div>
+        <!-- end menu người dùng -->
+
     <?php } else { ?>
         <a href="./?action=login&mod=login" class="btn btn-success text-white m-3 navbar-brand" type="button"><b>Đăng
                 nhập</b></a>
     <?php } ?>
     <div class="m-3">
         <?php
-        include(ROOT . "/include/cart.php");
+        if ($isAdmin == false) {
+            include(ROOT . "/include/cart.php");
+        }
         ?>
     </div>
 
 </nav>
 <!-- end navbar -->
 
-<!-- banner -->
+<!-- start banner -->
 <?php if (getIndex("action") == "home" && $isAdmin == false) { ?>
     <div>
         <img src="media/image/slide/8.jpg" class="banner d-block w-100" alt="...">

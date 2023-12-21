@@ -13,5 +13,5 @@ define('ROOT', dirname(dirname(__FILE__) ) );
 define("BASE_URL", "http://".$_SERVER['SERVER_NAME']."/lab/");//dia chi website
 define("TOP_SELLER", 3);
 define("STRLEN_MO_TA", 60);
-define("KHOA_HOC_MOT_TRANG", 5);
+define("SAN_PHAM_MOT_TRANG", 4);
 ?>

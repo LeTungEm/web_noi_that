@@ -11,7 +11,7 @@
         }
 
         public function getCourseByCustomerID($cusID, $limit){
-        return $this->select("select * from muakhoahoc inner join khoahoc where muakhoahoc.maKhoaHoc = khoahoc.maKhoaHoc and maKhachHang = ? limit ".$limit.", ".KHOA_HOC_MOT_TRANG, array($cusID));
+        return $this->select("select * from muakhoahoc inner join khoahoc where muakhoahoc.maKhoaHoc = khoahoc.maKhoaHoc and maKhachHang = ? limit ".$limit.", ".SAN_PHAM_MOT_TRANG, array($cusID));
         }
 
         public function checkPurchasedCourseByCustomerID($cusID, $courseID){

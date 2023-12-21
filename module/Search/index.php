@@ -35,9 +35,7 @@ if (isset($_POST["btnSearchSubmit"])) { ?>
                         </div>
                     </a>
                 </div>
-            <?php }
-            //$countCourses = ceil(count($dsSanPham)/KHOA_HOC_MOT_TRANG);
-            ?>
+            <?php } ?>
         </div>
     </div>
 
@@ -45,15 +43,15 @@ if (isset($_POST["btnSearchSubmit"])) { ?>
 <!-- end list lesson -->
 <div class="container">
     <div class="row">
-        <h4 class="col text-center pb-4 pt-4 text-success">3 LÝ DO BẠN NÊN HỌC ONLINE TẠI TM_Studying</h4>
+        <h4 class="col text-center pb-4 pt-4 text-success">LÝ DO BẠN NÊN MUA SẮM TẠI TM_House</h4>
     </div>
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 pdm-No text-center">
             <div class="mb-4">
                 <div>
                     <i class='fas fa-chalkboard-teacher' style='font-size:70px'></i>
-                    <h5>Giảng viên uy tín</h5>
-                    <span>Bài giảng chất lượng</span>
+                    <h5>Đảm bảo uy tín</h5>
+                    <span>Sản phẩm chất lượng</span>
                 </div>
             </div>
         </div>
@@ -61,8 +59,8 @@ if (isset($_POST["btnSearchSubmit"])) { ?>
             <div class="mb-4">
                 <div>
                     <i class='fas fa-atlas' style='font-size:70px'></i>
-                    <h5>Thanh toán 1 lần</h5>
-                    <span>Học mãi mãi</span>
+                    <h5>Giao hành nhanh chóng</h5>
+                    <span>Giao hàng tận nơi nhanh chóng</span>
                 </div>
             </div>
         </div>
@@ -70,8 +68,8 @@ if (isset($_POST["btnSearchSubmit"])) { ?>
             <div class="mb-4">
                 <div>
                     <i class='fas fa-chalkboard-teacher' style='font-size:70px'></i>
-                    <h5>Học trực tuyến</h5>
-                    <span>Hỗ trợ trực tiếp</span>
+                    <h5>Bảo hành dài lâu</h5>
+                    <span>Bảo hành sản phẩm 1 năm</span>
                 </div>
             </div>
         </div>
