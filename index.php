@@ -28,28 +28,20 @@
     include("config/config.php");
     include("classes/Db.class.php");
     include("classes/Admin.class.php");
-    include("classes/KhoaHoc.class.php");
     include("classes/Hang.class.php");
     include("classes/GioHang.class.php");
     include("classes/SanPham.class.php");
     include("classes/LoaiSanPham.class.php");
-    include("classes/MuaKhoaHoc.class.php");
-    include("classes/NhanVien.class.php");
     include("classes/KhachHang.class.php");
-    include("classes/BaiHoc.class.php");
     include("include/function.php");
 
     $db = new Db();
     $admin = new Admin();
     $sanPham = new SanPham();
     $loaiSanPham = new LoaiSanPham();
-    $course = new KhoaHoc();
     $hang = new Hang();
     $gioHang = new GioHang();
-    $purchasedCourse = new MuaKhoaHoc();
     $customer = new KhachHang();
-    $employee = new NhanVien();
-    $lession = new BaiHoc();
 
     $action = "home_ql";
     if (getIndex("action") != '') {
@@ -69,18 +61,14 @@
             <div class="row" style="width: 100%; margin-left: 0px;">
                 <div class="col-lg-3 col-md-3 pdm-No text-center" style="background-color: rgb(0 0 0 / 13%);">
                     <ul class="list-group my-2 fw-bolder">
-                        <li class="list-group-item list-group-item-action <?php if ($action == "course_manager")
-                            echo "border-end border-success border-5"; ?>"><a href="?action=course_manager" class="text-black">Quản lý
-                                khóa học</a></li>
-                        <li class="list-group-item list-group-item-action <?php if ($action == "customer_manager")
-                            echo "border-end border-success border-5"; ?>"><a href="?action=customer_manager" class="text-black">Quản
-                                lý khách hàng</a></li>
-                        <li class="list-group-item list-group-item-action <?php if ($action == "employee_manager")
-                            echo "border-end border-success border-5"; ?>"><a href="?action=employee_manager" class="text-black">Quản
-                                lý nhân viên</a></li>
                         <li class="list-group-item list-group-item-action <?php if ($action == "product_manager")
-                            echo "border-end border-success border-5"; ?>"><a href="?action=product_manager" class="text-black">Quản
+                            echo "border-end border-success border-5"; ?>"><a href="?action=product_manager"
+                                class="text-black">Quản
                                 lý sản phẩm</a></li>
+                        <li class="list-group-item list-group-item-action <?php if ($action == "customer_manager")
+                            echo "border-end border-success border-5"; ?>"><a href="?action=customer_manager"
+                                class="text-black">Quản
+                                lý khách hàng</a></li>
                     </ul>
                 </div>
                 <div id="div_gdql" class="col-lg-9 col-md-9 pdm-No text-center bg-success">
@@ -101,12 +89,6 @@
                             break;
                         case "customer_manager":
                             include("module/CustomerManager/index.php");
-                            break;
-                        case "course_manager":
-                            include("module/CourseManager/index.php");
-                            break;
-                        case "employee_manager":
-                            include("module/CourseManager/index.php");
                             break;
                         case "product_manager":
                             include("module/ProductManager/index.php");
@@ -150,13 +132,6 @@
                 include("module/ProductDetail/index.php");
                 include("include/footer.php");
                 break;
-            case "cus_purchasedCourse":
-                echo "<div>";
-                include("include/header.php");
-                echo "</div>";
-                include("module/PurchasedCourse/index.php");
-                include("include/footer.php");
-                break;
             case "account_infomation":
                 echo "<div>";
                 include("include/header.php");
@@ -174,8 +149,6 @@
         }
     }
     ?>
-    <!-- <iframe name="moiTrang" width="100%" height="700px"></iframe> -->
-
 </body>
 
 </html>

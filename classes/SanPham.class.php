@@ -113,6 +113,10 @@ class SanPham extends Db
     {
         return $this->insert("INSERT INTO `sanpham`(`tenSanPham`, `gia`, `giaMoi`, `moTa`, `maLoai`, `maHang`, `hinh`) VALUES (?,?,?,?,?,?,?);", array($tenSanPham, $gia, $giaMoi, $moTa, $maLoai, $maHang, $hinh));
     }
+    public function updateSanPham($tenSanPham, $gia, $giaMoi, $moTa, $maLoai, $maHang, $maSanPham)
+    {
+        return $this->update("UPDATE `sanpham` SET `tenSanPham`= ?,`gia`= ?,`giaMoi`= ?,`moTa`= ?,`maLoai`= ?,`maHang`= ? WHERE `maSanPham` = ?;", array($tenSanPham, $gia, $giaMoi, $moTa, $maLoai, $maHang, $maSanPham));
+    }
 
 }
 ?>

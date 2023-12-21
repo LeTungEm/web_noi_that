@@ -67,8 +67,10 @@ if (isset($_POST["btnSubmit"])) {
 } else {
     $listProduct = $sanPham->getAll();
 }
-
-
+$mod = getIndex("mod");
+if ($mod == 'editProduct') {
+    include(ROOT . "/module/ProductManager/formEdit.php");
+}
 ?>
 <div style="height: 100%" class="scrollVer">
     <form method="post" action="?action=product_manager">
@@ -141,7 +143,7 @@ if (isset($_POST["btnSubmit"])) {
             <li class="list-group-item">
                 <!-- form thêm khóa học -->
                 <form action="" method="post" enctype="multipart/form-data">
-                    <div class="row courses-info">
+                    <div class="row product-info">
                         <div class="col col-lg-1 col-12 mb-1 fw-bolder">
                             <!-- icon thêm khóa học -->
                             <label for="qlproduct_cbControl" class="d-flex my-1">
@@ -164,7 +166,7 @@ if (isset($_POST["btnSubmit"])) {
                                 <?php
                                 foreach ($dsLoaiSP as $loai) {
                                     ?>
-                                    <option selected value="<?php echo $loai["maLoai"] ?>">
+                                    <option value="<?php echo $loai["maLoai"] ?>">
                                         <?php echo $loai["tenLoai"] ?>
                                     </option>
                                 <?php } ?>
@@ -175,7 +177,7 @@ if (isset($_POST["btnSubmit"])) {
                                 <?php
                                 foreach ($dsHang as $hang) {
                                     ?>
-                                    <option selected value="<?php echo $hang["maHang"] ?>">
+                                    <option value="<?php echo $hang["maHang"] ?>">
                                         <?php echo $hang["tenHang"] ?>
                                     </option>
                                 <?php } ?>
@@ -197,7 +199,7 @@ if (isset($_POST["btnSubmit"])) {
                 </form>
             </li>
             <li class="list-group-item">
-                <div class="row courses-info">
+                <div class="row product-info">
                     <div class="col col-1 fw-bolder">Mã</div>
                     <div class="col col-2 fw-bolder">Tên sản phẩm</div>
                     <div class="col col-2 fw-bolder">Giá</div>
@@ -211,7 +213,7 @@ if (isset($_POST["btnSubmit"])) {
             foreach ($listProduct as $sp) { ?>
                 <!-- Hiện danh sách khóa học -->
                 <li class="list-group-item">
-                    <div class="row courses-info">
+                    <div class="row product-info">
                         <div class="col col-1">
                             <?php echo $sp["maSanPham"]; ?>
                         </div>
@@ -242,11 +244,7 @@ if (isset($_POST["btnSubmit"])) {
                             <i class="material-icons" onclick="deleteMessage(<?php echo $sp['maSanPham']; ?>)"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal" data-toggle="tooltip" title="Xóa"
                                 style="cursor: pointer;" style="font-size: 24px; cursor: pointer;">delete</i>
-                            <!-- <a href="?action=course_manager&mod=editCourse&idProduct=<?php echo $sp["maSanPham"]; ?>"
-                                class="text-black"><i style="font-size:24px" data-toggle="tooltip" title="Chỉnh sửa"
-                                    style="cursor: pointer;" class="fa">&#xf044;</i></a> -->
-
-                            <a href="?action=course_manager&mod=editCourse&idProduct=<?php echo $sp["maSanPham"]; ?>"
+                            <a href="?action=product_manager&mod=editProduct&idProduct=<?php echo $sp["maSanPham"]; ?>"
                                 class="text-black">
                                 <svg style="font-size:24px" data-toggle="tooltip" title="Chỉnh sửa" style="cursor: pointer;"
                                     xmlns="http://www.w3.org/2000/svg" height="16" width="16"
@@ -308,7 +306,7 @@ if (isset($_POST["btnSubmit"])) {
         fill: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity));
     }
 
-    .courses-info .col i {
+    .product-info .col i {
         display: flex;
     }
 </style>

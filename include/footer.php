@@ -4,9 +4,19 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <ul class="list-group">
-                    <li class="list-group-item bg-secondary border-0 text-white">Địa chỉ: 180 Cao Lỗ, phường 4, quận 8, HCM.</li>
-                    <li class="list-group-item bg-secondary border-0"><a class="text-white" href="tel:0859002124">085 900 2124</a></li>
-                    <li class="list-group-item bg-secondary border-0"><a class="text-white" href="mailto: DH51903460@student.stu.edu.vn">DH51903460@student.stu.edu.vn</a></li>
+                    <li class="list-group-item bg-secondary border-0 text-white">TM_House</li>
+                    <li class="list-group-item bg-secondary border-0 text-white">Địa chỉ: 180 Cao Lỗ, phường 4, quận 8,
+                        HCM.</li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <ul class="list-group">
+                    <li class="list-group-item bg-secondary border-0 text-white">Bán hàng độc đáo</li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <ul class="list-group">
+                    <li class="list-group-item bg-secondary border-0 text-white">Liên hệ</li>
                 </ul>
             </div>
         </div>

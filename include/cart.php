@@ -11,6 +11,7 @@
     </svg>
 </label>
 <!-- end icon mở giỏ hàng -->
+
 <div class="cart-container shadow d-none p-3">
     <div class="d-flex justify-content-between bold mb-3">
         <span class="fs-5">Giỏ hành</span>

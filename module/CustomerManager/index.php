@@ -33,9 +33,9 @@
                         ?>
                     </div>
                     <div class="col col-3">
-                        <i class="material-icons me-3" data-toggle="tooltip" title="Khóa tài khoản">&#xe14b;</i>
+                        <!-- <i class="material-icons me-3" data-toggle="tooltip" title="Khóa tài khoản">&#xe14b;</i>
                         <i style="font-size:24px" data-toggle="tooltip" title="Chỉnh sửa" style="cursor: pointer;"
-                            class="fa">&#xf044;</i>
+                            class="fa">&#xf044;</i> -->
                     </div>
                 </div>
             </li>

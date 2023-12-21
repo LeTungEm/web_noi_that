@@ -1,7 +1,7 @@
 <?php
 $configDB = array();
 $configDB["host"] 		= "localhost";
-$configDB["database"]	= "quanlybankhoahoc";
+$configDB["database"]	= "webbannoithat";
 $configDB["username"] 	= "root";
 $configDB["password"] 	= "";
 define("HOST", "localhost");

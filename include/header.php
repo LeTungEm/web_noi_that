@@ -70,7 +70,7 @@ foreach ($dsSPTrongGH as $spInCart) {
             </ul>
             <?php if (!$admin->checkLogin()) { ?>
                 <form action="./index.php?action=search" class="d-flex" method="post" role="search">
-                    <input class="form-control" name="search" type="search" placeholder="Tìm khóa học" aria-label="Search">
+                    <input class="form-control" name="search" type="search" placeholder="Tìm sản phẩm" aria-label="Search">
                     <button class="btn btn-outline-success" name="btnSearchSubmit" type="submit">
                         <svg style='font-size:20px' xmlns="http://www.w3.org/2000/svg" height="16" width="16"
                             viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
@@ -110,9 +110,6 @@ foreach ($dsSPTrongGH as $spInCart) {
                     <hr class="dropdown-divider">
                 </li>
                 <li><a class="dropdown-item  me-5" href="?action=account_infomation">Thông tin tài khoản</a></li>
-                <?php if ($customer->checkLogin()) { ?>
-                    <li><a class="dropdown-item" href="?action=cus_purchasedCourse">Khóa học đã mua</a></li>
-                <?php } ?>
                 <li><a class="dropdown-item" onclick="getCLick()" href="?action=dangxuat">Đăng xuất</a></li>
             </ul>
         </div>
