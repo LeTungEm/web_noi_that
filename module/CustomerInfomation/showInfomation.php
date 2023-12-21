@@ -14,8 +14,6 @@
     $user = null;
     if($customer->checkLogin()){
         $user = $customer->getCustomer(getSession("customer_sdt"));
-    }else if($employee->checkLogin()){
-        $user = $employee->getEmployee(getSession("employee_sdt"));
     }else if($admin->checkLogin()){
         $user = $admin->getAdmin(getSession("admin_sdt"));
     }
@@ -63,11 +61,6 @@
         <?php
             if(getSession("customer_sdt") != ''){
                 $listSDT = $customer->getAllSDT($user["ma"]);
-                foreach($listSDT as $sdt){
-                echo "<br>".$sdt["sdt"];
-                }
-            }else if(getSession("employee_sdt") != ''){
-                $listSDT = $employee->getAllSDT($user["ma"]);
                 foreach($listSDT as $sdt){
                 echo "<br>".$sdt["sdt"];
                 }
