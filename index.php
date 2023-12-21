@@ -142,7 +142,6 @@
             default:
                 if ($action == 'dangxuat') {
                     $customer->logOut();
-                    $employee->logOut();
                 }
                 header("location:index.php?action=home");
                 break;
